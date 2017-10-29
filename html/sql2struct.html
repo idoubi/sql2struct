@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sql2struct</title>
+  <link rel="stylesheet" href="../css/element-ui.css">
+  <link rel="stylesheet" href="../css/sql2struct.css">
+</head>
+<body>
+  <div id="app">
+    <el-container>
+      <el-header>
+        <el-menu
+          :default-active="activeIndex"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b">
+          <el-menu-item index="1">SQL2Struct</el-menu-item>
+          <el-menu-item index="2" @click="dialogFormVisible = true">options</el-menu-item>
+          <el-menu-item index="3"><a href="https://github.com/mikemintang/sql2struct.git" target="_blank">Github</a></el-menu-item>
+        </el-menu>
+      </el-header>
+      <el-main>
+        <el-row :gutter="60">
+          <el-col :span="12"><div class="grid-content bg-purple">
+            <el-form ref="form" label-position="top" label-width="80px">
+              <el-form-item label="SQL">
+                <el-input type="textarea" placeholder="input sql for creating table in mysql" :rows="30" v-model="sqlContent"></el-input>
+              </el-form-item>
+            </el-form>
+          </div></el-col>
+          <el-col :span="12"><div class="grid-content bg-purple-light">
+            <el-form ref="form" label-position="top" label-width="80px">
+              <el-form-item label="Struct">
+                <el-input type="textarea" placeholder="data struct used in golang" :rows="30" v-model="structContent"></el-input>
+              </el-form-item>
+            </el-form>
+          </div></el-col>
+        </el-row>
+      </el-main>
+      <el-footer>
+        
+      </el-footer>
+    </el-container>
+
+    <el-dialog title="options" :visible.sync="dialogFormVisible">
+      <el-form>
+        <el-form-item label="gorm">
+          <el-switch
+            v-model="useGorm"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="json">
+          <el-switch
+            v-model="useJson"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="typeMap">
+          <el-input type="textarea" placeholder="" :rows="14" v-model="typeMapStr"></el-input>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+  </div>
+  <script src="../js/vue@2.5.2.js"></script>
+  <script src="../js/element-ui@2.0.1.js"></script>
+  <script src="../js/sql2struct.js"></script>
+</body>
+</html>

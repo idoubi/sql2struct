@@ -1,0 +1,13 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: #fafaff;
+}
+
+a {
+    text-decoration: none;
+}
+
+.el-header {
+    padding: 0;
+}

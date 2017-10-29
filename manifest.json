@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "sql2struct",
+    "version": "0.1.0",
+    "description": "a developer-friendly tool used for trasfering sql to golang struct",
+    "icons": {
+        "16": "img/logo16.png",
+        "48": "img/logo48.png",
+        "128": "img/logo128.png"
+    },
+    "browser_action": {
+        "default_icon": "img/logo16.png",
+        "default_title": "sql2struct"
+    },
+    "permissions": [
+        "storage"
+    ],
+    "background": {
+        "scripts": ["js/background.js"]
+    },
+    "sandbox": {
+        "pages": ["html/sql2struct.html"]
+    },
+    "web_accessible_resources": [ 
+        "css/fonts/element-icons.ttf",
+        "css/fonts/element-icons.woff" 
+    ]
+}
