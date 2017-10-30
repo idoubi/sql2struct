@@ -6,7 +6,7 @@ new Vue({
             sqlContent: '',
             structContent: '',
             activeIndex: '1',
-            typeMap: '',
+            typeMap: getTypeMap(),
             typeMapStr: '',
             useGorm: true,
             useJson: true,
@@ -25,10 +25,9 @@ new Vue({
                 var data = {
                     useGorm: that.useGorm,
                     useJson: that.useJson,
-                    typeMap: getTypeMap()
+                    typeMap: that.typeMap
                 }
                 that.setCache(data)
-                that.typeMap = getTypeMap()
                 for (var k in that.typeMap) {
                     that.typeMapStr += k + ': ' + that.typeMap[k] + '\n'
                 }
