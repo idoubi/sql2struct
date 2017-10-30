@@ -4,7 +4,7 @@
 
 ## 使用说明
 
-1. 下载chrome扩展文件：[点击下载](http://qiniu.idoubi.cc/sql2struct.crx)
+1. 下载chrome扩展文件：[点击下载](http://qiniu.idoubi.cc/0.1.0/sql2struct.crx)
 
 2. 安装扩展
 
