@@ -23,11 +23,15 @@ new Vue({
             if (!res) { // 不存在缓存数据
                 // 初始配置数据
                 var data = {
-                    useGorm: this.useGorm,
-                    useJson: this.useJson,
+                    useGorm: that.useGorm,
+                    useJson: that.useJson,
                     typeMap: getTypeMap()
                 }
                 that.setCache(data)
+                that.typeMap = getTypeMap()
+                for (var k in that.typeMap) {
+                    that.typeMapStr += k + ': ' + that.typeMap[k] + '\n'
+                }
                 return
             }
             var obj = JSON.parse(res)
@@ -38,6 +42,7 @@ new Vue({
                 that.useJson = obj.useJson
             }
             if (obj.typeMap != undefined) {
+                that.typeMap = obj.typeMap
                 for (var k in obj.typeMap) {
                     that.typeMapStr += k + ': ' + obj.typeMap[k] + '\n'
                 }
