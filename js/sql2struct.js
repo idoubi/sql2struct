@@ -10,6 +10,7 @@ new Vue({
             typeMapStr: '',
             useGorm: true,
             useJson: true,
+            useForm: true,
             dialogFormVisible: false
         }
     },
@@ -25,6 +26,7 @@ new Vue({
                 var data = {
                     useGorm: that.useGorm,
                     useJson: that.useJson,
+                    useForm: that.useForm,
                     typeMap: that.typeMap
                 }
                 that.setCache(data)
@@ -39,6 +41,9 @@ new Vue({
             }
             if (obj.useJson != undefined) {
                 that.useJson = obj.useJson
+            }
+            if (obj.useForm != undefined) {
+                that.useForm = obj.useForm
             }
             if (obj.typeMap != undefined) {
                 that.typeMap = obj.typeMap
@@ -80,15 +85,19 @@ new Vue({
                             if (fieldName.toLowerCase() == 'id') {
                                 fieldName = 'ID'
                             }
-                            structResult += '\n\t' + fieldName + ' ' + fieldType
+                            structResult += '\n\t' + fieldName + ' ' + fieldType + ' '
+                            structArr = []
                             if (this.useGorm) {
-                                structResult += ' `gorm:"column:'+ fieldJsonName +'"'
-                                if (this.useJson) {
-                                    structResult += ' json:"' + fieldJsonName + '"'
-                                }
-                                structResult += '`'
-                            } else if (this.useJson) {
-                                structResult += ' `json:"' + fieldJsonName + '"`'
+                                structArr.push('gorm:"column:'+ fieldJsonName +'"')
+                            }
+                            if (this.useJson) {
+                                structArr.push('json:"' + fieldJsonName + '"')
+                            }
+                            if (this.useForm) {
+                                structArr.push('form:"' + fieldJsonName + '"')
+                            }
+                            if (structArr.length > 0) {
+                                structResult += '`'+structArr.join(' ')+'`'
                             }
                         } else {
                             continue
@@ -114,6 +123,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useJson: this.useJson,
+                useForm: this.useForm,
                 typeMap: this.typeMap
             }
             this.setCache(data)
@@ -123,6 +133,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useJson: this.useJson,
+                useForm: this.useForm,
                 typeMap: this.typeMap
             }
             this.setCache(data)
@@ -132,10 +143,21 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useJson: this.useJson,
+                useForm: this.useForm,
                 typeMap: this.typeMap
             }
             this.setCache(data)
-        }  
+        },
+        useForm(val) {
+            this.useForm = val
+            var data = {
+                useGorm: this.useGorm,
+                useJson: this.useJson,
+                useForm: this.useForm,
+                typeMap: this.typeMap
+            }
+            this.setCache(data)
+        }
     },
     methods: {
       handleSelect(key, keyPath) {
