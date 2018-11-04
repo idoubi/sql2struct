@@ -196,7 +196,7 @@ function getTypeMap() {
         'mediumint': 'int64',
         'bigint': 'int64',
         'float': 'float64',
-        'double': 'float164',
+        'double': 'float64',
         'decimal': 'float64',
         'char': 'string',
         'varchar': 'string',
