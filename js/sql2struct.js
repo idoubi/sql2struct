@@ -9,6 +9,7 @@ new Vue({
             typeMap: getTypeMap(),
             typeMapStr: '',
             useGorm: true,
+            useSqlx: true,
             useJson: true,
             useForm: true,
             dialogFormVisible: false
@@ -25,6 +26,7 @@ new Vue({
                 // 初始配置数据
                 var data = {
                     useGorm: that.useGorm,
+                    useSqlx: that.useSqlx,
                     useJson: that.useJson,
                     useForm: that.useForm,
                     typeMap: that.typeMap
@@ -38,6 +40,9 @@ new Vue({
             var obj = JSON.parse(res)
             if (obj.useGorm != undefined) {
                 that.useGorm = obj.useGorm
+            }
+            if (obj.useSqlx != undefined) {
+                that.useSqlx = obj.useSqlx
             }
             if (obj.useJson != undefined) {
                 that.useJson = obj.useJson
@@ -90,6 +95,9 @@ new Vue({
                             if (this.useGorm) {
                                 structArr.push('gorm:"column:'+ fieldJsonName +'"')
                             }
+                            if (this.useSqlx) {
+                                structArr.push('db:"column:'+ fieldJsonName +'"')
+                            }
                             if (this.useJson) {
                                 structArr.push('json:"' + fieldJsonName + '"')
                             }
@@ -122,6 +130,7 @@ new Vue({
             this.typeMap = typeMap
             var data = {
                 useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -132,6 +141,18 @@ new Vue({
             this.useGorm = val
             var data = {
                 useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
+                useJson: this.useJson,
+                useForm: this.useForm,
+                typeMap: this.typeMap
+            }
+            this.setCache(data)
+        },
+        useSqlx(val) {
+            this.useSqlx = val
+            var data = {
+                useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -142,6 +163,7 @@ new Vue({
             this.useJson = val
             var data = {
                 useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -152,6 +174,7 @@ new Vue({
             this.useForm = val
             var data = {
                 useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
