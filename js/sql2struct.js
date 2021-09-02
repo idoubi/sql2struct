@@ -10,6 +10,7 @@ new Vue({
             typeMapStr: '',
             useGorm: true,
             useSqlx: true,
+            useXorm: false,
             useJson: true,
             useForm: true,
             dialogFormVisible: false
@@ -27,6 +28,7 @@ new Vue({
                 var data = {
                     useGorm: that.useGorm,
                     useSqlx: that.useSqlx,
+                    useXorm: that.useXorm,
                     useJson: that.useJson,
                     useForm: that.useForm,
                     typeMap: that.typeMap
@@ -43,6 +45,9 @@ new Vue({
             }
             if (obj.useSqlx != undefined) {
                 that.useSqlx = obj.useSqlx
+            }
+            if (obj.useXorm != undefined) {
+                that.useXorm = obj.useXorm
             }
             if (obj.useJson != undefined) {
                 that.useJson = obj.useJson
@@ -98,6 +103,9 @@ new Vue({
                             if (this.useSqlx) {
                                 structArr.push('db:"column:'+ fieldJsonName +'"')
                             }
+                            if (this.useXorm) {
+                                structArr.push('xorm:"'+ fieldJsonName +'"')
+                            }
                             if (this.useJson) {
                                 structArr.push('json:"' + fieldJsonName + '"')
                             }
@@ -131,6 +139,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -142,6 +151,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -153,6 +163,19 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
+                useJson: this.useJson,
+                useForm: this.useForm,
+                typeMap: this.typeMap
+            }
+            this.setCache(data)
+        },
+        useXorm(val) {
+            this.useXorm = val
+            var data = {
+                useGorm: this.useGorm,
+                useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -164,6 +187,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -175,6 +199,7 @@ new Vue({
             var data = {
                 useGorm: this.useGorm,
                 useSqlx: this.useSqlx,
+                useXorm: this.useXorm,
                 useJson: this.useJson,
                 useForm: this.useForm,
                 typeMap: this.typeMap
@@ -184,7 +209,7 @@ new Vue({
     },
     methods: {
       handleSelect(key, keyPath) {
-        
+
       },
       setCache(data) {
         var message = {
@@ -232,6 +257,6 @@ function getTypeMap() {
         'timestramp': 'int64',
         'enum': 'string',
         'set': 'string',
-        'blob': 'string' 
+        'blob': 'string'
     }
 }

@@ -35,6 +35,7 @@ show create table system_user\G;
 
 - gorm：开启此配置项，则生成struct的时候，每个字段都会包含类似`gorm:column:"id"`这样的信息。
 - sqlx：开启此配置项，则生成struct的时候，每个字段都会包含类似`db:column:"id"`这样的信息。
+- xorm：开启此配置项，则生成struct的时候，每个字段都会包含类似`xorm:"id"`这样的信息。
 - json：开启此配置项，则生成struct的时候，每个字段都会包含类似`json:"id"`这样的信息。
 - typeMap：此配置项定义mysql数据表字段类型与go字段类型的映射关系，在数据解析的时候会按照配置的映射关系进行结构体生成。
 

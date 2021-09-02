@@ -42,7 +42,7 @@
         </el-row>
       </el-main>
       <el-footer>
-        
+
       </el-footer>
     </el-container>
 
@@ -58,6 +58,13 @@
         <el-form-item label="sqlx">
           <el-switch
             v-model="useSqlx"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
+        </el-form-item>
+          <el-form-item label="xorm">
+          <el-switch
+            v-model="useXorm"
             active-color="#13ce66"
             inactive-color="#ff4949">
           </el-switch>
