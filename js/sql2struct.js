@@ -77,16 +77,17 @@ new Vue({
             var types = this.typeMap
             var structResult = 'type '
             for (var i = 0, len = res.length; i < len; i++) {
-                var field = res[i].match(/\`(.+)\`\s+(tinyint|smallint|int|mediumint|bigint|float|double|decimal|varchar|char|text|mediumtext|longtext|datetime|time|date|enum|set|blob)?/)
                 if (i == 0) {   // 第一个字段为数据表名称
-                    if (field && field[1] != undefined && field[2] == undefined) {
-                        var tbName = titleCase(field[1])
+                    var tbNameMatch = res[i].match(/\`(.+)\`\s?\(/)
+                    if (tbNameMatch && tbNameMatch[1] != undefined) {
+                        var tbName = titleCase(tbNameMatch[1])
                         structResult += tbName + ' struct {'
                         continue
                     } else {
                         return
                     }
                 } else {  // 数据表字段
+                    var field = res[i].match(/\`(.+)\`\s+(tinyint|smallint|int|mediumint|bigint|float|double|decimal|varchar|char|text|mediumtext|longtext|datetime|time|date|enum|set|blob|timestamp)?(\(.+\))?\s+/)
                     if (field && field[1] != undefined && field[2] != undefined) {
                         if (types[field[2]] != undefined) {
                             var fieldName = titleCase(field[1])
@@ -254,7 +255,7 @@ function getTypeMap() {
         'time': 'time.Time',
         'date': 'time.Time',
         'datetime': 'time.Time',
-        'timestramp': 'int64',
+        'timestamp': 'int64',
         'enum': 'string',
         'set': 'string',
         'blob': 'string'
