@@ -8,11 +8,11 @@ new Vue({
             activeIndex: '1',
             typeMap: getTypeMap(),
             typeMapStr: '',
-            useGorm: true,
-            useSqlx: true,
+            useGorm: false,
+            useSqlx: false,
             useXorm: false,
             useJson: true,
-            useForm: true,
+            useForm: false,
             dialogFormVisible: false
         }
     },
@@ -21,47 +21,51 @@ new Vue({
             act: 'getOptions'
         }
         var that = this
-        // 获取缓存数据
-        chrome.runtime.sendMessage(message, function(res) {
-            if (!res) { // 不存在缓存数据
-                // 初始配置数据
-                var data = {
-                    useGorm: that.useGorm,
-                    useSqlx: that.useSqlx,
-                    useXorm: that.useXorm,
-                    useJson: that.useJson,
-                    useForm: that.useForm,
-                    typeMap: that.typeMap
+
+        if(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+           // 获取缓存数据
+            chrome.runtime.sendMessage(message, function(res) {
+                if (!res) { // 不存在缓存数据
+                    // 初始配置数据
+                    var data = {
+                        useGorm: that.useGorm,
+                        useSqlx: that.useSqlx,
+                        useXorm: that.useXorm,
+                        useJson: that.useJson,
+                        useForm: that.useForm,
+                        typeMap: that.typeMap
+                    }
+                    that.setCache(data)
+                    for (var k in that.typeMap) {
+                        that.typeMapStr += k + ': ' + that.typeMap[k] + '\n'
+                    }
+                    return
                 }
-                that.setCache(data)
-                for (var k in that.typeMap) {
-                    that.typeMapStr += k + ': ' + that.typeMap[k] + '\n'
+                var obj = JSON.parse(res)
+                if (obj.useGorm != undefined) {
+                    that.useGorm = obj.useGorm
                 }
-                return
-            }
-            var obj = JSON.parse(res)
-            if (obj.useGorm != undefined) {
-                that.useGorm = obj.useGorm
-            }
-            if (obj.useSqlx != undefined) {
-                that.useSqlx = obj.useSqlx
-            }
-            if (obj.useXorm != undefined) {
-                that.useXorm = obj.useXorm
-            }
-            if (obj.useJson != undefined) {
-                that.useJson = obj.useJson
-            }
-            if (obj.useForm != undefined) {
-                that.useForm = obj.useForm
-            }
-            if (obj.typeMap != undefined) {
-                that.typeMap = obj.typeMap
-                for (var k in obj.typeMap) {
-                    that.typeMapStr += k + ': ' + obj.typeMap[k] + '\n'
+                if (obj.useSqlx != undefined) {
+                    that.useSqlx = obj.useSqlx
                 }
-            }
-        })
+                if (obj.useXorm != undefined) {
+                    that.useXorm = obj.useXorm
+                }
+                if (obj.useJson != undefined) {
+                    that.useJson = obj.useJson
+                }
+                if (obj.useForm != undefined) {
+                    that.useForm = obj.useForm
+                }
+                if (obj.typeMap != undefined) {
+                    that.typeMap = obj.typeMap
+                    for (var k in obj.typeMap) {
+                        that.typeMapStr += k + ': ' + obj.typeMap[k] + '\n'
+                    }
+                }
+            })
+        }
+        
     },
     watch: {
         sqlContent(val) {
@@ -217,9 +221,13 @@ new Vue({
             act: 'setOptions',
             data: JSON.stringify(data)
         }
-        chrome.runtime.sendMessage(message, function(res) {
-            //console.log(res)
-        })
+
+        if(typeof chrome !== 'undefined'  && chrome.runtime && chrome.runtime.sendMessage) {
+            chrome.runtime.sendMessage(message, function(res) {
+                //console.log(res)
+            })
+        }
+       
       }
     }
 })
