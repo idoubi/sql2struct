@@ -1,0 +1,11 @@
+{
+	"main": "html/sql2struct.html",
+	"logo": "img/logo48.png",
+	"features": [
+		{
+		  "code": "sql2struct",
+		  "explain": "sql2struct",
+		   "cmds":["sql", "sql2struct"]
+		}
+	]
+}

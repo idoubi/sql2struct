@@ -20,7 +20,7 @@
           active-text-color="#ffd04b">
           <el-menu-item index="1">SQL2Struct</el-menu-item>
           <el-menu-item index="2" @click="dialogFormVisible = true">options</el-menu-item>
-          <el-menu-item index="3"><a href="https://github.com/mikemintang/sql2struct.git" target="_blank">Github</a></el-menu-item>
+          <el-menu-item index="3"><a href="https://github.com/idoubi/sql2struct" target="_blank">Github</a></el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
@@ -34,7 +34,7 @@
           </div></el-col>
           <el-col :span="12"><div class="grid-content bg-purple-light">
             <el-form ref="form" label-position="top" label-width="80px">
-              <el-form-item label="Struct">
+              <el-form-item label="Go Struct">
                 <el-input type="textarea" placeholder="data struct used in golang" :rows="30" v-model="structContent"></el-input>
               </el-form-item>
             </el-form>
@@ -47,7 +47,7 @@
     </el-container>
 
     <el-dialog title="options" :visible.sync="dialogFormVisible">
-      <el-form>
+      <el-form :inline="true">
         <el-form-item label="gorm">
           <el-switch
             v-model="useGorm"
@@ -84,7 +84,7 @@
           </el-switch>
         </el-form-item>
         <el-form-item label="typeMap">
-          <el-input type="textarea" placeholder="" :rows="14" v-model="typeMapStr"></el-input>
+          <el-input type="textarea" placeholder="int:int64" :rows="14" v-model="typeMapStr"></el-input>
         </el-form-item>
       </el-form>
     </el-dialog>

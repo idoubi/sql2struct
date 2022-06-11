@@ -8,11 +8,11 @@ new Vue({
             activeIndex: '1',
             typeMap: getTypeMap(),
             typeMapStr: '',
-            useGorm: true,
-            useSqlx: true,
+            useGorm: false,
+            useSqlx: false,
             useXorm: false,
             useJson: true,
-            useForm: true,
+            useForm: false,
             dialogFormVisible: false
         }
     },
