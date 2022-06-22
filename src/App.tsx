@@ -1,25 +1,39 @@
 import React, { useState } from 'react'
 import Editor from "./components/editor/Editor"
-import { PregTable } from './lib/sql2struct';
+import { pregSqlStatement } from './lib/sql';
 import './App.less';
+import { genGoStructCode } from './lib/gostruct';
+import { SqlTable } from './lib/type.d';
 
 export default () => {
-  const [sqlCode] = useState(`create table test`)
-  const [gostructCode, setGostructCode] = useState(`type Test struct`)
+  const demoSql = `paste sql statement from "show create table tabel_name"`
+
+  const [sqlCode] = useState(demoSql)
+  const [gostructCode, setGostructCode] = useState(`type TableName struct`)
 
   const sqlCodeChange = (code: string) => {
     console.log('sql code is:', code)
 
-    const table = PregTable(code)
-    console.log('table', table)
+    const sqlTable = pregSqlStatement(code)
+    if (!sqlTable) {
+      setGostructCode(`invalid sql`);
+      return
+    }
 
-    const gostructCode = code + ` transfer to go struct`
-    setGostructCode(gostructCode)
+    const goStructCode = genGoStructCode(sqlTable as SqlTable)
+    if (!goStructCode) {
+      setGostructCode(`gen go struct failed`)
+      return
+    }
+
+    setGostructCode(goStructCode)
   }
 
   return <div className="app">
     <div className="wrapper">
-      <div className="header">header</div>
+      <div className="header">
+        <h1>SQL2Struct</h1>
+      </div>
       <div className="main">
         <div className="sqlarea">
           <Editor codeLanguage='sql' code={sqlCode} onChange={sqlCodeChange} />

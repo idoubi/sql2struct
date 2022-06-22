@@ -1,0 +1,22 @@
+CREATE TABLE `system_user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `username` varchar(50) NOT NULL DEFAULT '' COMMENT '登录用户名',
+  `password` varchar(255) NOT NULL DEFAULT '' COMMENT '登录密码',
+  `salt` varchar(50) NOT NULL DEFAULT '' COMMENT '密码盐值',
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `openid` varchar(50) NOT NULL DEFAULT '' COMMENT '微信标识',
+  `phone` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号',
+  `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '注册方式',
+  `created_at` int(10) NOT NULL DEFAULT '0' COMMENT '注册时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态',
+  `nickname` varchar(50) NOT NULL DEFAULT '' COMMENT '昵称',
+  `avatar_url` varchar(255) NOT NULL DEFAULT '' COMMENT '头像',
+  `gender` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别',
+  `updated_at` int(10) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `role_id` int(10) NOT NULL DEFAULT '0' COMMENT '用户角色',
+  PRIMARY KEY (`id`),
+  KEY `UsernameIndex` (`username`),
+  KEY `EmailIndex` (`email`),
+  KEY `PhoneIndex` (`phone`),
+  KEY `OpenidIndex` (`openid`)
+) ENGINE=InnoDB AUTO_INCREMENT=652 DEFAULT CHARSET=utf8mb4 COMMENT='用户表'

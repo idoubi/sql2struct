@@ -1,6 +1,6 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { sql } from '@codemirror/lang-sql';
-import { EditorProps } from "./Editor.d"
+import { EditorProps } from "./type.d"
 import "./Editor.less"
 
 export default (props: EditorProps) => {
