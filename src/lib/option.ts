@@ -23,3 +23,15 @@ export const defaultFieldMaps: kv = {
     'set': 'string',
     'blob': 'string'
 }
+
+// default go struct options 
+export const defaultGoStructOptions: kv = {
+    "json": "on",
+    "xml": "off",
+    "gorm": "off",
+    "xorm": "off",
+    "mapstructure": "off"
+}
+
+// default go struct tags
+export const defaultGoStructTags: Array<string> = ["json"]

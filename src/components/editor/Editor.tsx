@@ -1,5 +1,7 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { sql } from '@codemirror/lang-sql';
+import { rust } from '@codemirror/lang-rust';
+import { eclipse } from '@uiw/codemirror-theme-eclipse';
 import { EditorProps } from "./type.d"
 import "./Editor.less"
 
@@ -11,7 +13,8 @@ export default (props: EditorProps) => {
             <CodeMirror
                 value={code}
                 height="100%"
-                extensions={[sql({})]}
+                theme={eclipse}
+                extensions={codeLanguage == 'sql' ? [sql({})] : [rust()]}
                 onChange={onChange}
             />
         </div>

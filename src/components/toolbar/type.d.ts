@@ -1,7 +1,8 @@
-import { kv, Options } from "../../lib/type"
+import { kv } from "../../lib/type"
 
 export declare interface ToolbarProps {
     languages: kv
-    options?: Options
-    optionOnChange?(any): void
+    options?: kv
+    optionValues?: Array<string>
+    optionOnChange?: (value: any[]) => void
 }

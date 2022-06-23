@@ -1,11 +1,18 @@
 import { ReactNode } from "react"
 import { ToolbarProps } from "./type.d"
+import { CheckboxGroup } from '@douyinfe/semi-ui';
 
 export default (props: ToolbarProps) => {
-    let { languages, options, optionOnChange } = props
+    const { languages, options, optionValues, optionOnChange } = props
 
-    if (!options) {
-        options = {}
+    let checkboxOptions: any[] = []
+    if (options) {
+        Object.keys(options as Object).map((key) => {
+            checkboxOptions.push({
+                label: key,
+                value: key
+            })
+        })
     }
 
     return (
@@ -18,20 +25,7 @@ export default (props: ToolbarProps) => {
                 </select>
             </div>
             <div className="options">
-                {Object.keys(options as Object).map((key): ReactNode => {
-                    <label htmlFor="">options: </label>
-                    let checked: boolean = false
-                    if (options && options[key]) {
-                        checked = true
-                    }
-
-                    console.log(11, key, checked)
-
-                    return <span key={key}>
-                        <input type="checkbox" value={key} onChange={optionOnChange} checked={checked} />
-                        <label>{key}</label>
-                    </span>
-                })}
+                <CheckboxGroup direction='horizontal' options={checkboxOptions} value={optionValues} onChange={optionOnChange} />
             </div>
         </div >
     )

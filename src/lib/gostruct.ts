@@ -3,8 +3,8 @@ import { kv, GoStructField, GoStruct, SqlField, SqlTable } from "./type.d"
 import { camelCase } from "./util";
 
 // gen go struct code from sql table object
-export const genGoStructCode = (sqlTable: SqlTable): string | null => {
-    const goSturct = toGoStruct(sqlTable)
+export const genGoStructCode = (sqlTable: SqlTable, tags: Array<string>): string | null => {
+    const goSturct = toGoStruct(sqlTable, tags)
     if (!goSturct) {
         return null
     }
@@ -31,17 +31,18 @@ export const getGoStructFieldType = (sqlFieldType: string): string | null => {
 }
 
 // transfer sql table to go struct
-export const toGoStruct = (sqlTable: SqlTable): GoStruct | null => {
+export const toGoStruct = (sqlTable: SqlTable, tags: Array<string>): GoStruct | null => {
     let fields: Array<GoStructField> = [];
     sqlTable.fields.map((sqlField: SqlField) => {
-        let tags: kv = { // todo: gen tags
-            "json": sqlField.name
-        }
+        let tagKv: kv = {}
+        tags.forEach((tag) => {
+            tagKv[tag] = sqlField.name
+        })
         let field: GoStructField = {
             name: camelCase(sqlField.name),
             type: getGoStructFieldType(sqlField.type) as string,
             comment: sqlField.comment,
-            tags: tags
+            tags: tagKv
         }
         fields.push(field)
     })
@@ -62,7 +63,7 @@ export const formatGoStruct = (struct: GoStruct): string => {
     struct.fields.map((item) => {
         content += `\n\t${item.name} ${item.type}`
 
-        if (item.tags) {
+        if (item.tags && Object.keys(item.tags).length > 0) {
             content += ` \``
             let tagArr: Array<string> = []
             for (const k in item.tags) {
@@ -73,7 +74,7 @@ export const formatGoStruct = (struct: GoStruct): string => {
         }
 
         if (item.comment) {
-            content += ` //${item.comment}`
+            content += ` // ${item.comment}`
         }
     })
     content += `
