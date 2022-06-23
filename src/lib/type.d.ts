@@ -3,6 +3,11 @@ export declare interface kv {
     [key: string]: string
 }
 
+// declare options type
+export declare interface Options {
+    [key: string]: boolean
+}
+
 // declare sql field 
 export declare interface SqlField {
     name: string
