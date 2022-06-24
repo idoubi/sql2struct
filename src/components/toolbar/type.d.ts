@@ -5,4 +5,5 @@ export declare interface ToolbarProps {
     options?: kv
     optionValues?: Array<string>
     optionOnChange?: (value: any[]) => void
+    buttons?: JSX.Element
 }

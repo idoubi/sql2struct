@@ -35,3 +35,6 @@ export const defaultGoStructOptions: kv = {
 
 // default go struct tags
 export const defaultGoStructTags: Array<string> = ["json"]
+
+// default special identifiers
+export const defaultSpecialIdentifiers: Array<string> = ["id", "api", "url", "uri"]

@@ -1,9 +1,10 @@
 import { ReactNode } from "react"
 import { ToolbarProps } from "./type.d"
-import { CheckboxGroup } from '@douyinfe/semi-ui';
+import { CheckboxGroup, Button } from '@douyinfe/semi-ui';
+import "./Toolbar.less"
 
 export default (props: ToolbarProps) => {
-    const { languages, options, optionValues, optionOnChange } = props
+    const { languages, options, optionValues, optionOnChange, buttons } = props
 
     let checkboxOptions: any[] = []
     if (options) {
@@ -26,6 +27,9 @@ export default (props: ToolbarProps) => {
             </div>
             <div className="options">
                 <CheckboxGroup direction='horizontal' options={checkboxOptions} value={optionValues} onChange={optionOnChange} />
+            </div>
+            <div className="buttons">
+                {buttons}
             </div>
         </div >
     )

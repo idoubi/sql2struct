@@ -5,6 +5,7 @@ specifiers:
   '@codemirror/lang-rust': ^6.0.0
   '@codemirror/lang-sql': ^6.0.0
   '@codemirror/language': ^6.1.0
+  '@douyinfe/semi-icons': ^2.13.0
   '@douyinfe/semi-ui': ^2.13.0
   '@types/node': ^18.0.0
   '@types/react': ^18.0.0
@@ -29,6 +30,7 @@ dependencies:
   '@codemirror/lang-rust': 6.0.0
   '@codemirror/lang-sql': 6.0.0
   '@codemirror/language': 6.1.0
+  '@douyinfe/semi-icons': 2.13.0_react@18.2.0
   '@douyinfe/semi-ui': 2.13.0_b7l63hf5lcj6y7jx6xqd7qe7ea
   '@uiw/codemirror-theme-dracula': 4.9.4
   '@uiw/codemirror-theme-eclipse': 4.9.4

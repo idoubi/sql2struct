@@ -3,8 +3,8 @@ import { kv, GoStructField, GoStruct, SqlField, SqlTable } from "./type.d"
 import { camelCase } from "./util";
 
 // gen go struct code from sql table object
-export const genGoStructCode = (sqlTable: SqlTable, tags: Array<string>): string | null => {
-    const goSturct = toGoStruct(sqlTable, tags)
+export const genGoStructCode = (sqlTable: SqlTable, tags: Array<string>, specialIdentifiers: Array<string>, fieldMaps: kv): string | null => {
+    const goSturct = toGoStruct(sqlTable, tags, specialIdentifiers, fieldMaps)
     if (!goSturct) {
         return null
     }
@@ -21,8 +21,8 @@ export const genGoStructCode = (sqlTable: SqlTable, tags: Array<string>): string
 }
 
 // get go struct field type from sql field type
-export const getGoStructFieldType = (sqlFieldType: string): string | null => {
-    const goStructFieldType = defaultFieldMaps[sqlFieldType as keyof kv]
+export const getGoStructFieldType = (sqlFieldType: string, fieldMaps: kv): string | null => {
+    let goStructFieldType = fieldMaps[sqlFieldType]
     if (!goStructFieldType) {
         return null
     }
@@ -31,7 +31,7 @@ export const getGoStructFieldType = (sqlFieldType: string): string | null => {
 }
 
 // transfer sql table to go struct
-export const toGoStruct = (sqlTable: SqlTable, tags: Array<string>): GoStruct | null => {
+export const toGoStruct = (sqlTable: SqlTable, tags: Array<string>, specialIdentifiers: Array<string>, fieldMaps: kv): GoStruct | null => {
     let fields: Array<GoStructField> = [];
     sqlTable.fields.map((sqlField: SqlField) => {
         let tagKv: kv = {}
@@ -39,8 +39,8 @@ export const toGoStruct = (sqlTable: SqlTable, tags: Array<string>): GoStruct | 
             tagKv[tag] = sqlField.name
         })
         let field: GoStructField = {
-            name: camelCase(sqlField.name),
-            type: getGoStructFieldType(sqlField.type) as string,
+            name: specialIdentifiers.includes(sqlField.name) ? sqlField.name.toUpperCase() : camelCase(sqlField.name),
+            type: getGoStructFieldType(sqlField.type, fieldMaps) as string,
             comment: sqlField.comment,
             tags: tagKv
         }

@@ -12,6 +12,7 @@
     "@codemirror/lang-rust": "^6.0.0",
     "@codemirror/lang-sql": "^6.0.0",
     "@codemirror/language": "^6.1.0",
+    "@douyinfe/semi-icons": "^2.13.0",
     "@douyinfe/semi-ui": "^2.13.0",
     "@uiw/codemirror-theme-dracula": "^4.9.4",
     "@uiw/codemirror-theme-eclipse": "^4.9.4",
