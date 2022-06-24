@@ -6,21 +6,17 @@ import { pregSqlStatement } from './lib/sql';
 import { genGoStructCode } from './lib/gostruct';
 import { SqlTable } from './lib/type.d';
 import { defaultGoStructOptions, defaultGoStructTags } from './lib/option';
+import { Col, Row } from '@douyinfe/semi-ui';
 import './App.less';
 
 export default () => {
   const [sqlCode, setSqlCode] = useState(`paste sql statement from "show create table tabel_name\G"`)
-
-  fs.readFile('src/demo.sql').then((content) => {
-    setSqlCode(content)
-  });
 
   const [sqlTable, setSqlTable] = useState({} as SqlTable)
 
   const [goStructCode, setGoStructCode] = useState(`type TableName struct`)
 
   const [goStructTags, setGoStructTags] = useState(defaultGoStructTags)
-
 
   // go struct option change handler
   const goStructOptionOnChange = (tags: any[]) => {
@@ -46,16 +42,21 @@ export default () => {
     setGoStructCode(goStructCode)
   }
 
-  // after go struct tags changed
+  // componentDidMount
   useEffect(() => {
-    renderGoStructCode()
-  }, [goStructTags])
+    console.log('init')
+    // load demo sql
+    fs.readFile('src/demo.sql').then((content) => {
+      setSqlCode(content)
+    });
+  }, [])
 
   // after sql code changed
   useEffect(() => {
+    console.log('sql code changed')
     const sqlTable = pregSqlStatement(sqlCode)
     if (!sqlTable) {
-      setSqlTable(null)
+      setSqlTable({} as SqlTable)
       return
     }
     setSqlTable(sqlTable)
@@ -63,8 +64,15 @@ export default () => {
 
   // after sql table changed
   useEffect(() => {
+    console.log('sql table changed')
     renderGoStructCode()
-  })
+  }, [sqlTable])
+
+  // after go struct tags changed
+  useEffect(() => {
+    console.log('go struct tags changed')
+    renderGoStructCode()
+  }, [goStructTags])
 
   return <div className="app">
     <div className="wrapper">

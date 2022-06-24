@@ -9,7 +9,9 @@ specifiers:
   '@types/node': ^18.0.0
   '@types/react': ^18.0.0
   '@types/react-dom': ^18.0.0
+  '@uiw/codemirror-theme-dracula': ^4.9.4
   '@uiw/codemirror-theme-eclipse': ^4.9.4
+  '@uiw/codemirror-theme-sublime': ^4.9.4
   '@uiw/react-codemirror': ^4.9.4
   '@vitejs/plugin-react': ^1.3.0
   fs: 0.0.1-security
@@ -28,7 +30,9 @@ dependencies:
   '@codemirror/lang-sql': 6.0.0
   '@codemirror/language': 6.1.0
   '@douyinfe/semi-ui': 2.13.0_b7l63hf5lcj6y7jx6xqd7qe7ea
+  '@uiw/codemirror-theme-dracula': 4.9.4
   '@uiw/codemirror-theme-eclipse': 4.9.4
+  '@uiw/codemirror-theme-sublime': 4.9.4
   '@uiw/react-codemirror': 4.9.4_biqbaboplfbrettd7655fr4n2y
   fs: 0.0.1-security
   go: link:@codemirror/legacy-modes/mode/go
@@ -669,8 +673,20 @@ packages:
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
 
+  /@uiw/codemirror-theme-dracula/4.9.4:
+    resolution: {integrity: sha512-NHhfOm9tbzD8zw/ev2kordyRmiO3A7B5MzMFkpxCP4vTZH/+TR/jctw+RfN+1DwJYXUo1DEultvRWJ99u9zTjg==}
+    dependencies:
+      '@uiw/codemirror-themes': 4.9.4
+    dev: false
+
   /@uiw/codemirror-theme-eclipse/4.9.4:
     resolution: {integrity: sha512-CWHVlMz0b0HagygDuFarZLr1W2esTbo1/O0euU3Aar48xRDQolSgmFM37qRlgkBZdaM4okFPhHmv5afJ6oUNdA==}
+    dependencies:
+      '@uiw/codemirror-themes': 4.9.4
+    dev: false
+
+  /@uiw/codemirror-theme-sublime/4.9.4:
+    resolution: {integrity: sha512-FzF976LeoACHRjoue0HXDai0i0wp4K0rav/AkbK8FzljhGBAZ7d7aJDSIF6NJUbwKi0ALRH+gPrRpJZdI2aIxg==}
     dependencies:
       '@uiw/codemirror-themes': 4.9.4
     dev: false
