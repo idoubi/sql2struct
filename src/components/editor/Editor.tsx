@@ -6,7 +6,7 @@ import './Editor.less'
 import { EditorProps } from './type.d'
 
 export default (props: EditorProps) => {
-  const { codeLanguage, code, onChange } = props
+  const { codeLanguage, code, placeholder, onChange } = props
 
   return (
     <div className="editor">
@@ -14,6 +14,7 @@ export default (props: EditorProps) => {
         value={code}
         height="100%"
         theme={eclipse}
+        placeholder={placeholder}
         extensions={codeLanguage === 'sql' ? [sql({})] : [rust()]}
         onChange={onChange}
       />

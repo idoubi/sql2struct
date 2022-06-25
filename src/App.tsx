@@ -1,11 +1,11 @@
 import { IconSetting } from '@douyinfe/semi-icons'
 import { Button } from '@douyinfe/semi-ui'
 import { useEffect, useState } from 'react'
-import fs from 'vite-plugin-fs/browser'
 import './App.less'
 import Editor from './components/editor/Editor'
 import Option from './components/option/Option'
 import Toolbar from './components/toolbar/Toolbar'
+import demoSql from './demo.sql?raw'
 import logoUrl from './imgs/logo.png'
 import { genGoStructCode } from './lib/gostruct'
 import { defaultFieldMaps, defaultGoStructOptions, defaultGoStructTags, defaultSpecialIdentifiers } from './lib/option'
@@ -13,7 +13,7 @@ import { pregSqlStatement } from './lib/sql'
 import { SqlTable } from './lib/type.d'
 
 export default () => {
-  const [sqlCode, setSqlCode] = useState(`paste sql statement from "show create table tabel_name\G"`)
+  const [sqlCode, setSqlCode] = useState(``)
 
   const [sqlTable, setSqlTable] = useState({} as SqlTable)
 
@@ -28,7 +28,7 @@ export default () => {
   const [fieldMaps, setFieldMaps] = useState(defaultFieldMaps)
 
   // go struct option change handler
-  const goStructOptionOnChange = (tags: any[]) => {
+  const goStructOptionOnChange = (tags: string[]) => {
     setGoStructTags(tags)
   }
 
@@ -50,14 +50,6 @@ export default () => {
     }
     setGoStructCode(code)
   }
-
-  // componentDidMount
-  useEffect(() => {
-    // load demo sql
-    fs.readFile('src/demo.sql').then((content) => {
-      setSqlCode(content)
-    })
-  }, [])
 
   // after sql code changed
   useEffect(() => {
@@ -89,6 +81,12 @@ export default () => {
     renderGoStructCode()
   }, [fieldMaps])
 
+  // componentDidMount
+  useEffect(() => {
+    // load demo sql
+    setSqlCode(demoSql)
+  }, [])
+
   return (
     <div className="app">
       <Option
@@ -119,7 +117,12 @@ export default () => {
         <div className="main">
           <div className="sqlarea">
             <Toolbar languages={{ sql: 'SQL' }} />
-            <Editor codeLanguage="sql" code={sqlCode} onChange={sqlCodeOnChange} />
+            <Editor
+              codeLanguage="sql"
+              code={sqlCode}
+              placeholder={`paste sql statement like "CREATE TABLE ..." here`}
+              onChange={sqlCodeOnChange}
+            />
           </div>
           <div className="structarea">
             <Toolbar
@@ -138,7 +141,7 @@ export default () => {
                 </Button>
               }
             />
-            <Editor codeLanguage="go" code={goStructCode} />
+            <Editor codeLanguage="go" placeholder="go struct to be transfered" code={goStructCode} />
           </div>
         </div>
       </div>
