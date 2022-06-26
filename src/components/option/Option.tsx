@@ -21,7 +21,7 @@ export default (props: OptionProps) => {
           </div>
         </div>
       </TabPane>
-      <TabPane tab={<span>Fields Map</span>} itemKey="2">
+      <TabPane tab={<span>Field Maps</span>} itemKey="2">
         <div style={{ padding: '0 24px' }}>
           <div className="tip">Default map rule between sql field type and go struct field type </div>
           <CodeMirror value={fieldMapsJson} onChange={(v) => setFieldMapsJson(v)} extensions={[json()]} height="100%" />

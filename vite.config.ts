@@ -3,8 +3,9 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/sql2struct/',
   build: {
-    outDir: "dist/web"
+    outDir: 'dist/web'
   },
   plugins: [react()],
 })
