@@ -1,0 +1,12 @@
+{
+    "name": "sql2struct",
+    "description": "a developer-friendly tool for transfering sql to go struct.",
+    "version": "2.0.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "sql2struct"
+    }
+}
