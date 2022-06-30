@@ -2,40 +2,61 @@
 
 SQL2Struct is a developer-friendly tool used for transfering sql statement to go struct.
 
-## use sql2struct online 
+## use sql2struct online
 
 click to visit the [sql2struct online website](https://dou.tools/sql2struct/)
 
-## use sql2struct locally
+## use sql2struct as chrome extension
 
-1. clone source code 
+1. install from source
 
 ```shell
 git clone https://github.com/idoubi/sql2struct.git
-```
-
-2. install 
-
-```shell
 cd sql2struct
 pnpm install
 ```
 
-3. preview
+2. build chrome extension
 
 ```shell
-pnpm run dev
+pnpm build:chrome
 ```
 
-4. build
+3. install chrome extension
+
+open [chrome://extensions/](chrome://extensions/)
+
+load extension from sql2struct project dir `dist/chrome`
+
+## use sql2struct locally
+
+1. install from source
 
 ```shell
-pnpm run build
+git clone https://github.com/idoubi/sql2struct.git
+cd sql2struct
+pnpm install
+```
+
+2. preview
+
+```shell
+pnpm dev
+```
+
+3. build
+
+```shell
+pnpm build
+
+# or
+
+pnpm build:web
 ```
 
 ## how to use
 
-1. execute `show create table xxx\G;` in your database client. 
+1. execute `show create table xxx\G;` in your database client.
 
 ![20220626221324](https://blogcdn.idoustudio.com/blog/20220626221324.png)
 
@@ -57,7 +78,7 @@ fields in "special identifiers" will be uppercased when transfered to go struct 
 
 ![20220626222854](https://blogcdn.idoustudio.com/blog/20220626222854.png)
 
-"field maps" defines the map rules between sql field type and go struct field type. 
+"field maps" defines the map rules between sql field type and go struct field type.
 
 ![20220626222912](https://blogcdn.idoustudio.com/blog/20220626222912.png)
 
