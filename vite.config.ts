@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -12,7 +12,7 @@ export default defineConfig(({ command, mode }) => {
     plugins.push(viteStaticCopy({
       targets: [
         {
-          src: 'chrome/*',
+          src: 'src/chrome/*',
           dest: ''
         }
       ]
