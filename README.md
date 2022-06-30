@@ -2,6 +2,8 @@
 
 SQL2Struct is a developer-friendly tool used for transfering sql statement to go struct.
 
+[中文说明](README-CN.md)
+
 ## use sql2struct online
 
 click to visit the [sql2struct online website](https://dou.tools/sql2struct/)
