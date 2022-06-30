@@ -1,0 +1,24 @@
+{
+  "name": "sql2struct",
+  "description": "a developer-friendly tool for transfering sql to go struct.",
+  "version": "2.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "sql2struct",
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  }
+}
