@@ -1,4 +1,4 @@
-import { SqlField, SqlTable } from './type.d'
+import { SqlField, SqlTable } from './type'
 
 // preg match table name from sql statement
 export const pregTableName = (sql: string): string | null => {

@@ -1,4 +1,4 @@
-import { GoStruct, GoStructField, kv, SqlField, SqlTable } from './type.d'
+import { GoStruct, GoStructField, kv, SqlField, SqlTable } from './type'
 import { camelCase } from './util'
 
 // get go struct field type from sql field type

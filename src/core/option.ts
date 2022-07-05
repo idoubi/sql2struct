@@ -1,4 +1,4 @@
-import { kv } from './type.d'
+import { kv } from './type'
 
 // default sql to go struct field maps
 export const defaultFieldMaps: kv = {
@@ -28,6 +28,7 @@ export const defaultFieldMaps: kv = {
 export const defaultGoStructOptions: kv = {
   json: 'on',
   xml: 'off',
+  db: 'off',
   gorm: 'off',
   xorm: 'off',
   mapstructure: 'off',

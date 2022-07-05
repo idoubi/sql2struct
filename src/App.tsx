@@ -7,10 +7,10 @@ import Option from './components/option/Option'
 import Toolbar from './components/toolbar/Toolbar'
 import demoSql from './demo.sql?raw'
 import logoUrl from './images/logo.png'
-import { genGoStructCode } from './lib/gostruct'
-import { defaultFieldMaps, defaultGoStructOptions, defaultGoStructTags, defaultSpecialIdentifiers } from './lib/option'
-import { pregSqlStatement } from './lib/sql'
-import { SqlTable } from './lib/type.d'
+import { genGoStructCode } from './core/gostruct'
+import { defaultFieldMaps, defaultGoStructOptions, defaultGoStructTags, defaultSpecialIdentifiers } from './core/option'
+import { pregSqlStatement } from './core/sql'
+import { SqlTable } from './core/type'
 
 export default () => {
   const [sqlCode, setSqlCode] = useState(``)
