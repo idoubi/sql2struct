@@ -1,4 +1,4 @@
-import { kv } from '../../lib/type.d'
+import { kv } from '../../core/type'
 
 export declare interface ToolbarProps {
   languages: kv
