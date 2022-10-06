@@ -27,7 +27,7 @@ export const pregTableComment = (sql: string): string | null => {
 // preg match table fields from sql statement
 export const pregTableFields = (sql: string): Array<SqlField> | null => {
   const reg =
-    /`(.+)`\s+(tinyint|smallint|int|mediumint|bigint|float|double|decimal|varchar|char|text|mediumtext|longtext|datetime|time|date|enum|set|blob|timestamp){1}(.*)/gi
+    /`(.+)`\s+(tinyint|smallint|int|mediumint|bigint|float|double|decimal|varchar|char|tinytext|text|mediumtext|longtext|datetime|time|date|enum|set|blob|timestamp){1}(.*)/gi
   const res = sql.matchAll(reg)
 
   if (!res) {
