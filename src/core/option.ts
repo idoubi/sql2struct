@@ -12,6 +12,7 @@ export const defaultFieldMaps: kv = {
   decimal: 'float64',
   char: 'string',
   varchar: 'string',
+  tinytext: 'string',
   text: 'string',
   mediumtext: 'string',
   longtext: 'string',
