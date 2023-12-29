@@ -2,7 +2,7 @@ import { SqlField, SqlTable } from './type'
 
 // preg match table name from sql statement
 export const pregTableName = (sql: string): string | null => {
-  const reg = /create\s+table\s+`(.+)`/gi
+  const reg = /create\s+table\s+(?:if\s+not\s+exists\s+)?`(.+)`/gi
   const res = reg.exec(sql)
 
   if (!res || res.length < 2) {

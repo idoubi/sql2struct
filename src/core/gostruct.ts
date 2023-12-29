@@ -3,7 +3,7 @@ import { camelCase } from './util'
 
 // get go struct field type from sql field type
 export const getGoStructFieldType = (sqlFieldType: string, fieldMaps: kv): string | null => {
-  const goStructFieldType = fieldMaps[sqlFieldType]
+  const goStructFieldType = fieldMaps[sqlFieldType.toLowerCase()]
   if (!goStructFieldType) {
     return null
   }
